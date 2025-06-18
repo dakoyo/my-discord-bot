@@ -1,0 +1,29 @@
+# Node modules
+node_modules/
+dist/
+
+# Environment variables
+.env
+
+# Log files
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS generated files
+.DS_Store
+.vscode/
+
+# NPM/Yarn cache
+.npm/
+.yarn/
+npm-cache/
+
+# Editor specific files
+.idea/ # IntelliJ IDEA / WebStorm
+*.sublime-project
+*.sublime-workspace
+
+# Build artifacts
+*.tsbuildinfo
