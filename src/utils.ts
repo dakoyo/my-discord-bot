@@ -8,7 +8,8 @@ import {
     WebhookMessageCreateOptions,
     Message,
     ChannelType,
-    Client
+    Client,
+    TextBasedChannel
 } from "discord.js";
 
 type WebhookCompatibleChannel = TextChannel | NewsChannel | VoiceChannel | ForumChannel;
@@ -71,10 +72,11 @@ class Utils {
         try {
             const channel = await client.channels.fetch(channelId);
 
-            if (!channel || channel.type !== ChannelType.GuildText) {
+            if (!channel || !channel.isTextBased()) {
                 return null;
             }
-            const message = await (channel as TextChannel).messages.fetch(messageId);
+
+            const message = await (channel as TextBasedChannel).messages.fetch(messageId);
             return message;
 
         } catch (error) {
