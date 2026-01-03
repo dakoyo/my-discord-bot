@@ -15,7 +15,7 @@ const client = new Discord.Client({
     ]
 });
 
-client.on("ready", () => onReady(client));
+client.on("clientReady", () => onReady(client));
 client.on("messageCreate", (message) => onMessageCreate(client, message));
 client.on("interactionCreate", (interaction) => CommandManager.handleInteraction(interaction));
 

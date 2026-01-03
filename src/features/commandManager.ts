@@ -75,6 +75,7 @@ class CommandManager {
 
     public async handleInteraction(interaction: Interaction) {
         if (!interaction.isCommand()) return;
+        if (!interaction.isChatInputCommand()) return;
 
         const command = this.commands.get(interaction.commandName);
 
@@ -84,7 +85,7 @@ class CommandManager {
         }
 
         try {
-            await command.callback(interaction as CommandInteraction);
+            await command.callback(interaction);
         } catch (error) {
             console.error(error);
             if (interaction.replied || interaction.deferred) {
