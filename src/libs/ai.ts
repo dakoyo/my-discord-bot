@@ -10,9 +10,9 @@ const groq = new Groq({
     apiKey: process.env.GROQ_API_KEY,
 })
 
-const prompt = fs.readFileSync(path.join(__dirname, "prompts/usabot.md"), "utf-8");
+const prompt = fs.readFileSync(path.join(__dirname, "prompts/main.md"), "utf-8");
 
-export async function generateUsabotMessage(message: Message, client: Client): Promise<string> {
+export async function generateAIresponse(content: string): Promise<string> {
     const chatCompletion = await groq.chat.completions.create({
         "messages": [
             {
@@ -21,7 +21,7 @@ export async function generateUsabotMessage(message: Message, client: Client): P
             },
             {
                 "role": "user",
-                "content": message.content
+                "content": content
             }
         ],
         "model": "openai/gpt-oss-120b",

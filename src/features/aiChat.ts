@@ -1,5 +1,5 @@
 import { Client, DMChannel, Message, TextChannel, NewsChannel, ThreadChannel } from "discord.js";
-import { generateUsabotMessage } from "../libs/ai";
+import { generateAIresponse } from "../libs/ai";
 
 export async function handleAiChat(client: Client, message: Message) {
     if (message.channel instanceof DMChannel) return;
@@ -9,7 +9,7 @@ export async function handleAiChat(client: Client, message: Message) {
         try {
             const channel = message.channel as TextChannel | NewsChannel | ThreadChannel;
             await channel.sendTyping();
-            const response = await generateUsabotMessage(message, client);
+            const response = await generateAIresponse(message.content);
             await channel.send(response);
         } catch (e) {
             console.error(e);
