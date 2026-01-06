@@ -8,9 +8,6 @@ importers:
 
   .:
     dependencies:
-      '@google/generative-ai':
-        specifier: ^0.24.1
-        version: 0.24.1
       discord.js:
         specifier: ^14.20.0
         version: 14.25.1
@@ -23,6 +20,12 @@ importers:
       groq-sdk:
         specifier: ^0.37.0
         version: 0.37.0
+      play-dl:
+        specifier: ^1.9.7
+        version: 1.9.7
+      shoukaku:
+        specifier: ^4.2.0
+        version: 4.2.0
     devDependencies:
       '@types/express':
         specifier: ^5.0.3
@@ -63,10 +66,6 @@ packages:
   '@discordjs/ws@1.2.3':
     resolution: {integrity: sha512-wPlQDxEmlDg5IxhJPuxXr3Vy9AjYq5xCvFWGJyD7w7Np8ZGu+Mc+97LCoEc/+AYCo2IDpKioiH0/c/mj5ZR9Uw==}
     engines: {node: '>=16.11.0'}
-
-  '@google/generative-ai@0.24.1':
-    resolution: {integrity: sha512-MqO+MLfM6kjxcKoy0p1wRzG3b4ZZXtPI+z2IE26UogS2Cm/XHO+7gGRBh6gcJsOiIVoH93UwKvW4HdgiOZCy9Q==}
-    engines: {node: '>=18.0.0'}
 
   '@sapphire/async-queue@1.5.5':
     resolution: {integrity: sha512-cvGzxbba6sav2zZkH8GPf2oGk9yYoD5qrNWdu9fRehifgnFZJMV+nuy2nON2roRO4yQQ+v7MK/Pktl/HgfsUXg==}
@@ -478,6 +477,13 @@ packages:
   path-to-regexp@8.3.0:
     resolution: {integrity: sha512-7jdwVIRtsP8MYpdXSwOS0YdD0Du+qOoF/AEPIt88PcCFrZCzx41oxku1jD88hZBwbNUIEfpqvuhjFaMAqMTWnA==}
 
+  play-audio@0.5.2:
+    resolution: {integrity: sha512-ZAqHUKkQLix2Iga7pPbsf1LpUoBjcpwU93F1l3qBIfxYddQLhxS6GKmS0d3jV8kSVaUbr6NnOEcEMFvuX93SWQ==}
+
+  play-dl@1.9.7:
+    resolution: {integrity: sha512-KpgerWxUCY4s9Mhze2qdqPhiqd8Ve6HufpH9mBH3FN+vux55qSh6WJKDabfie8IBHN7lnrAlYcT/UdGax58c2A==}
+    engines: {node: '>=16.0.0'}
+
   process-nextick-args@2.0.1:
     resolution: {integrity: sha512-3ouUOpQhtgrbOa17J7+uxOTpITYWaGP7/AhoR3+A+/1e9skrzelGi/dXzEYyvbxubEF6Wn2ypscTKiKJFFn1ag==}
 
@@ -527,6 +533,10 @@ packages:
 
   setprototypeof@1.2.0:
     resolution: {integrity: sha512-E5LDX7Wrp85Kil5bhZv46j8jOeboKq5JMmYM3gVGdGH8xFpPWXUMsNrlODCrkoxMEeNi/XZIwuRvY4XNwYMJpw==}
+
+  shoukaku@4.2.0:
+    resolution: {integrity: sha512-3vPQLG484cZ1/2nd4ERRs6XESvGhvD8jZiB0STcpmTtnH6A/6ZcT3iYl00RoU1PZhC7TTrrvCYk1ca+KJjkoYw==}
+    engines: {node: '>=18.0.0', npm: '>=7.0.0'}
 
   side-channel-list@1.0.0:
     resolution: {integrity: sha512-FCLHtRD/gnpCiCHEiJLOwdmFP+wzCmDEkc9y7NsYxeF4u7Btsn1ZuwgwJGxImImHicJArLP4R0yX4c2KCrMrTA==}
@@ -702,8 +712,6 @@ snapshots:
     transitivePeerDependencies:
       - bufferutil
       - utf-8-validate
-
-  '@google/generative-ai@0.24.1': {}
 
   '@sapphire/async-queue@1.5.5': {}
 
@@ -1144,6 +1152,12 @@ snapshots:
 
   path-to-regexp@8.3.0: {}
 
+  play-audio@0.5.2: {}
+
+  play-dl@1.9.7:
+    dependencies:
+      play-audio: 0.5.2
+
   process-nextick-args@2.0.1: {}
 
   proxy-addr@2.0.7:
@@ -1223,6 +1237,13 @@ snapshots:
       - supports-color
 
   setprototypeof@1.2.0: {}
+
+  shoukaku@4.2.0:
+    dependencies:
+      ws: 8.18.3
+    transitivePeerDependencies:
+      - bufferutil
+      - utf-8-validate
 
   side-channel-list@1.0.0:
     dependencies:

@@ -9,7 +9,9 @@
 		"discord.js": "^14.20.0",
 		"dotenv": "^16.5.0",
 		"express": "^5.1.0",
-		"groq-sdk": "^0.37.0"
+		"groq-sdk": "^0.37.0",
+		"play-dl": "^1.9.7",
+		"shoukaku": "^4.2.0"
 	},
 	"scripts": {
 		"dev": "npm run build && npm run start",

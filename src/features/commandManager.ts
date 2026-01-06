@@ -11,7 +11,6 @@ import {
 import * as fs from "fs";
 import * as path from "path";
 
-// Define the structure of a command file
 export interface Command {
     command: SlashCommandBuilder;
     callback: (interaction: CommandInteraction) => Promise<void> | void;
@@ -88,11 +87,13 @@ class CommandManager {
             await command.callback(interaction);
         } catch (error) {
             console.error(error);
-            if (interaction.replied || interaction.deferred) {
-                await interaction.followUp({ content: 'There was an error while executing this command!', ephemeral: true });
-            } else {
-                await interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
-            }
+            try {
+                if (interaction.replied || interaction.deferred) {
+                    await interaction.followUp({ content: 'There was an error while executing this command!', ephemeral: true });
+                } else {
+                    await interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
+                }
+            } catch { }
         }
     }
 }
