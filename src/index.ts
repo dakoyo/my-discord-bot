@@ -1,5 +1,7 @@
 import * as dotenv from "dotenv";
 import "./server";
+import { connectDatabase } from "./libs/database";
+
 dotenv.config();
 import Discord, { GatewayIntentBits } from "discord.js"
 import { onReady } from "./events/ready";
@@ -27,4 +29,8 @@ client.on("voiceStateUpdate", (oldState, newState) => onVoiceStateUpdate(client,
 client.on("interactionCreate", (interaction) => CommandManager.handleInteraction(interaction));
 
 
-client.login(process.env.DISCORD_TOKEN);
+
+(async () => {
+    await connectDatabase();
+    client.login(process.env.DISCORD_TOKEN);
+})();

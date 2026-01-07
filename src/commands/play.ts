@@ -141,14 +141,15 @@ export const callback = async (interaction: CommandInteraction) => {
 
         collector.on('collect', async (i) => {
             if (i.isStringSelectMenu()) {
+                await i.deferUpdate();
                 currentPlatform = i.values[0];
                 top5 = await performSearch();
                 if (!top5 || top5.length === 0) {
-                    await i.update({ content: "このプラットフォームでは結果が見つかりませんでした (またはエラーが発生しました)。", embeds: [], components: [] });
+                    await i.editReply({ content: "このプラットフォームでは結果が見つかりませんでした (またはエラーが発生しました)。", embeds: [], components: [] });
                     return;
                 }
                 currentView = "top";
-                await i.update({
+                await i.editReply({
                     embeds: [generateEmbed(top5[0], false)],
                     components: generateComponents(false) as any
                 });
