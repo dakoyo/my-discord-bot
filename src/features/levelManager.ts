@@ -114,7 +114,7 @@ export class LevelManager {
             if (message && message.channel instanceof TextChannel) {
                 try {
                     const typeLabel = type === 'message' ? 'Text' : 'Voice';
-                    await message.channel.send(`Congratulations ${message.author}! You have reached **${typeLabel} Level ${newLevel}**!`);
+                    // notification
                 } catch (e) {
                 }
             }
