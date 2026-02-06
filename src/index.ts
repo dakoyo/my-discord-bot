@@ -36,6 +36,18 @@ client.on(Discord.Events.Error, (error) => console.error(`[ERROR] ${error.messag
     try {
         await connectDatabase();
 
+        // Network Connectivity Test
+        console.log("[INFO] Testing network connectivity to 'https://discord.com'...");
+        try {
+            const start = Date.now();
+            const res = await fetch("https://discord.com/api/v10/gateway");
+            const duration = Date.now() - start;
+            console.log(`[INFO] Network test success: Status ${res.status} (${duration}ms)`);
+        } catch (netErr) {
+            console.error("[FATAL] Network connectivity test failed. Render might be blocking requests or DNS is failing.");
+            console.error(netErr);
+        }
+
         const token = process.env.DISCORD_TOKEN;
         if (!token) {
             console.error("[CRITICAL] DISCORD_TOKEN is missing in environment variables!");
