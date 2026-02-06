@@ -28,9 +28,25 @@ client.on(Discord.Events.MessageCreate, (message) => onMessageCreate(client, mes
 client.on(Discord.Events.VoiceStateUpdate, (oldState, newState) => onVoiceStateUpdate(client, oldState, newState));
 client.on(Discord.Events.InteractionCreate, (interaction) => CommandManager.handleInteraction(interaction));
 
+// Debugging events
+client.on(Discord.Events.Debug, (info) => console.log(`[DEBUG] ${info}`));
+client.on(Discord.Events.Error, (error) => console.error(`[ERROR] ${error.message}`));
+
 (async () => {
-    await connectDatabase();
-    client.login(process.env.DISCORD_TOKEN).catch((err) => {
-        console.error("Failed to login:", err);
-    });
+    try {
+        await connectDatabase();
+
+        const token = process.env.DISCORD_TOKEN;
+        if (!token) {
+            console.error("[CRITICAL] DISCORD_TOKEN is missing in environment variables!");
+        } else {
+            console.log(`[INFO] DISCORD_TOKEN is present (Length: ${token.length})`);
+        }
+
+        console.log("[INFO] Attempting to log in...");
+        const tokenStr = await client.login(token);
+        console.log("[INFO] client.login() promise resolved. Token used.");
+    } catch (err) {
+        console.error("[FATAL] Error during startup:", err);
+    }
 })();
