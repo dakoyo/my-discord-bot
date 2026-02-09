@@ -13,6 +13,7 @@ export const callback = async (interaction: ChatInputCommandInteraction) => {
         }
         return;
     }
+    await interaction.deferReply();
 
     const guildId = interaction.guild.id;
     const query = { guildId };
@@ -22,7 +23,7 @@ export const callback = async (interaction: ChatInputCommandInteraction) => {
     const topVoice = await UserLevel.find(query).sort({ voiceLevel: -1, voiceXp: -1 }).limit(5);
 
     if (topText.length === 0 && topVoice.length === 0) {
-        await interaction.reply({ content: "データがありませんでした", ephemeral: true });
+        await interaction.editReply({ content: "データがありませんでした" });
         return;
     }
 
@@ -63,6 +64,6 @@ export const callback = async (interaction: ChatInputCommandInteraction) => {
     );
 
     if (interaction.isRepliable()) {
-        await interaction.reply({ embeds: [embed] });
+        await interaction.editReply({ embeds: [embed] });
     }
 };
